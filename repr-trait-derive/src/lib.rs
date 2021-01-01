@@ -1,3 +1,7 @@
+//! A crate holding derive macros for the repr-trait crate.
+//!
+//! In general, prefer to use repr-trait instead of this.
+
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, AttrStyle, Attribute, DeriveInput, Path};

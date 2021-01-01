@@ -3,8 +3,12 @@ name = "repr-trait-derive"
 version = "1.0.0"
 authors = ["Daniel Dulaney <dulaney.daniel@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Derive macros for working with repr-trait"
+readme = "README.md"
+repository = "https://github.com/danieldulaney/repr-trait/"
+license = "MIT"
+keywords = ["trait", "repr", "derive"]
+categories = ["memory-management", "rust-patterns"]
 
 [dependencies]
 syn = "1"
