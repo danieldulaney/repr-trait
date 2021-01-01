@@ -28,7 +28,7 @@ repr_derive!(C: repr_c("C"));
 fn has_repr(attrs: &[Attribute], repr: &str) -> bool {
     for attr in attrs {
         // If the style isn't outer, reject it
-        if attr.style != AttrStyle::Outer {
+        if matches!(attr.style, AttrStyle::Outer) {
             continue;
         }
 
