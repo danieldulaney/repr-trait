@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "repr-trait",
+    "repr-trait-derive",
+]

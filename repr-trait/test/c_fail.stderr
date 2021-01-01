@@ -1,0 +1,7 @@
+error: proc-macro derive panicked
+ --> $DIR/c_fail.rs:3:10
+  |
+3 | #[derive(C)]
+  |          ^
+  |
+  = help: message: Can't derive C on a struct without #[repr(C)]

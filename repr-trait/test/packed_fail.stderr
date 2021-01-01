@@ -1,0 +1,7 @@
+error: proc-macro derive panicked
+ --> $DIR/packed_fail.rs:3:10
+  |
+3 | #[derive(Packed)]
+  |          ^^^^^^
+  |
+  = help: message: Can't derive Packed on a struct without #[repr(packed)]

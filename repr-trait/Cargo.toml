@@ -1,0 +1,13 @@
+[package]
+name = "repr-trait"
+version = "0.1.0"
+authors = ["Daniel Dulaney <dulaney.daniel@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+repr-trait-derive = { path = "../repr-trait-derive" }
+
+[dev-dependencies]
+trybuild = "1"

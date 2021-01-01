@@ -1,0 +1,7 @@
+error: proc-macro derive panicked
+ --> $DIR/transparent_fail.rs:3:10
+  |
+3 | #[derive(Transparent)]
+  |          ^^^^^^^^^^^
+  |
+  = help: message: Can't derive Transparent on a struct without #[repr(transparent)]
