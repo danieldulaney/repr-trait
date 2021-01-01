@@ -1,4 +1,6 @@
-Traits to represent `repr`s
+# repr-trait
+
+Traits to represent Rust `repr`s
 
 If it is important for a generic parameter to have a particular `repr`, you can use
 the traits in this crate to ensure that it has the needed `repr`.
@@ -40,7 +42,7 @@ If the appropriate `repr` is not specified, the derive macro will refuse to comp
 struct NotPacked(u32, u8);
 ```
 
-# Structure
+## Structure
 
 This repo contains two crates: repr-trait holds the traits and reexports the derive
 macros. It is the only trait that should be used in general. repr-trait-derive holds
