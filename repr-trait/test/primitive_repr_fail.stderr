@@ -1,0 +1,7 @@
+error: proc-macro derive panicked
+ --> test/primitive_repr_fail.rs:1:10
+  |
+1 | #[derive(repr_trait::PrimitiveRepr)]
+  |          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = help: message: Can't derive PrimitiveRepr on a struct without repr(u*) or repr(i*)
