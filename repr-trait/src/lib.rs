@@ -41,6 +41,7 @@
 //! #[derive(Packed)]
 //! struct NotPacked(u32, u8);
 //! ```
+use std::ptr::NonNull;
 
 macro_rules! trait_and_docs {
     ($tr:ident as $repr:expr) => {
@@ -74,8 +75,32 @@ trait_and_docs!(C as "C");
 trait_and_docs!(Packed as "packed");
 trait_and_docs!(Transparent as "transparent");
 
-//pub use repr_trait_derive::Transparent;
-//pub use repr_trait_derive::C;
+/// Trait for types declared with #[repr(u*)] or #[repr(i*)].
+///
+/// # Safety
+///
+/// This trait should only be implemented for types with the correct `repr`. Because `repr`s
+/// cannot be checked by the compiler, this trait is `unsafe`.
+///
+/// Accessing the discriminant value should happen through safe [`discriminant`] function.
+/// This functionality is not implemented as a method on a trait, but as a function to
+/// ensure that it's implementation cannot be changed in an unlikely event of
+/// implementing this trait manually.
+pub unsafe trait PrimitiveRepr {
+    type Type;
+}
+
+/// Reads a discriminant of an enum with a primitive representation.
+pub fn discriminant<T: PrimitiveRepr>(enum_value: &T) -> &T::Type {
+    // SAFETY: Proc macro ensures that `repr(u*)` or `repr(i*)` is present.
+
+    // Taken from here: https://doc.rust-lang.org/stable/std/mem/fn.discriminant.html#accessing-the-numeric-value-of-the-discriminant
+    let discriminant_ptr = NonNull::from(enum_value).cast::<T::Type>();
+    unsafe { discriminant_ptr.as_ref() }
+}
+
+/// Derive macro for [`PrimitiveRepr`](trait@PrimitiveRepr)
+pub use repr_trait_derive::PrimitiveRepr;
 
 #[cfg(test)]
 mod test {
@@ -92,5 +117,9 @@ mod test {
 
         t.compile_fail("test/c_fail.rs");
         t.pass("test/c_pass.rs");
+
+        t.compile_fail("test/primitive_repr_fail.rs");
+
+        t.compile_fail("test/zero_variants_fail.rs");
     }
 }
